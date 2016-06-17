@@ -1,0 +1,21 @@
+{
+    "name": "hauntd/yii2-vote",
+    "description": "Votes, ratings, likes, favorites.",
+    "type": "yii2-extension",
+    "keywords": ["yii2","module"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexander Kononenko",
+            "email": "contact@hauntd.me"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "hauntd\\vote\\": ""
+        }
+    }
+}
