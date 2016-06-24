@@ -1,5 +1,7 @@
-Yii 2 Vote module
-=================
+# Yii 2 Vote module
+
+[![Code Climate](https://codeclimate.com/github/hauntd/yii2-vote/badges/gpa.svg)](https://codeclimate.com/github/hauntd/yii2-vote)
+
 Votes, ratings, likes, favorites.
 
 **Do not use. Work in progress**

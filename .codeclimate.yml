@@ -1,0 +1,21 @@
+---
+engines:
+  csslint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+      - php
+  fixme:
+    enabled: true
+  phpmd:
+    enabled: true
+ratings:
+  paths:
+  - "**.less"
+  - "**.css"
+  - "**.js"
+  - "**.php"
+exclude_paths: []
