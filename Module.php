@@ -3,6 +3,7 @@
 namespace hauntd\vote;
 
 use Yii;
+use yii\base\InvalidConfigException;
 
 /**
  * @author Alexander Kononenko <contact@hauntd.me>
@@ -34,6 +35,7 @@ class Module extends \yii\base\Module
     /**
      * @param $entity
      * @return array|null
+     * @throws InvalidConfigException
      */
     public function getSettingsForEntity($entity)
     {
@@ -46,6 +48,10 @@ class Module extends \yii\base\Module
         }
         if (!isset($settings['type'])) {
             $settings['type'] = self::TYPE_VOTING;
+        } else {
+            if (!in_array($settings['type'], [self::TYPE_TOGGLE, self::TYPE_VOTING])) {
+                throw new InvalidConfigException('Unsupported voting type.');
+            }
         }
 
         return $settings;

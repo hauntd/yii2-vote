@@ -2,8 +2,14 @@
     "name": "hauntd/yii2-vote",
     "description": "Votes, likes, favorites.",
     "type": "yii2-extension",
-    "keywords": ["yii2", "module"],
-    "license": "MIT",
+    "keywords": [
+        "yii2",
+        "module",
+        "votes",
+        "favorites",
+        "likes"
+    ],
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Alexander Kononenko",
@@ -11,7 +17,8 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "^2.0",
+        "yiisoft/yii2-bootstrap": "^2.0"
     },
     "autoload": {
         "psr-4": {

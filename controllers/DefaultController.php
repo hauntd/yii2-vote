@@ -40,7 +40,7 @@ class DefaultController extends Controller
             $settings = $module->getSettingsForEntity($form->entity);
 
             if ($settings['type'] == Module::TYPE_VOTING) {
-                $response = $this->processVoting($form);
+                $response = $this->processVote($form);
             } elseif ($settings['type'] == Module::TYPE_TOGGLE) {
                 $response = $this->processToggle($form);
             }
@@ -64,7 +64,7 @@ class DefaultController extends Controller
      * @throws \Exception
      * @throws \yii\base\InvalidConfigException
      */
-    private function processVoting(VoteForm $form)
+    private function processVote(VoteForm $form)
     {
         /* @var $vote Vote */
         $module = $this->getModule();
