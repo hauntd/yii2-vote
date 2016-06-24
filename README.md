@@ -2,6 +2,8 @@ Yii 2 Vote module
 =================
 Votes, ratings, likes, favorites.
 
+**Do not use. Work in progress**
+
 Installation
 ------------
 
@@ -25,7 +27,4 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
-
-```php
-<?= \hauntd\vote\AutoloadExample::widget(); ?>```
+*TBD*
