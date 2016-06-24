@@ -1,0 +1,84 @@
+@import "mixins";
+
+@positive: #03A678;
+@negative: #D24D57;
+@neutral: #ECF0F1;
+@darken: 25%;
+@lighten: 10%;
+
+.vote {
+  &:hover {
+    .vote-btn {
+      .transition(opacity 0.2s ease);
+      .opacity(1);
+    }
+  }
+  .vote-count, .vote-btn {
+    padding: 3px 8px;
+    .rounded(4px);
+  }
+  .vote-count {
+    background: @neutral;
+    color: darken(@neutral, 50%);
+    font-weight: bolder;
+    font-size: 11pt;
+    display: inline-block;
+    padding: 3px 12px;
+    .rounded(4px);
+  }
+  .vote-btn {
+    border: 0;
+    background: transparent;
+    font-weight: bolder;
+    font-size: 11pt;
+    cursor: pointer;
+    text-align: center;
+    .transition(opacity 0.2s ease);
+    .opacity(0);
+    i.glyphicon {
+      font-size: 11pt;
+      color: darken(@neutral, @darken);
+    }
+    &:hover {
+      color: darken(@neutral, @darken);
+      background: @neutral;
+      i.glyphicon {
+        color: @neutral;
+      }
+      &.vote-up {
+        color: @neutral;
+        background: @positive;
+      }
+      &.vote-down {
+        color: @neutral;
+        background: @negative;
+      }
+    }
+  }
+  &.vote-visible-buttons {
+    .vote-btn {
+      .opacity(1);
+    }
+  }
+}
+.vote-toggle {
+  .vote-btn {
+    .vote-icon {
+      margin-right: 7px;
+      padding-right: 7px;
+      border-right: 1px solid #aaa;
+    }
+    .vote-label {
+
+    }
+    .vote-count {
+      display: inline-block;
+      font-weight: bolder;
+      font-size: 10pt;
+      background: @neutral;
+      color: darken(@neutral, 50%);
+      padding: 1px 8px;
+      .rounded(4px);
+    }
+  }
+}

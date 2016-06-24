@@ -1,8 +1,8 @@
 {
     "name": "hauntd/yii2-vote",
-    "description": "Votes, ratings, likes, favorites.",
+    "description": "Votes, likes, favorites.",
     "type": "yii2-extension",
-    "keywords": ["yii2","module"],
+    "keywords": ["yii2", "module"],
     "license": "MIT",
     "authors": [
         {
