@@ -1,9 +1,4 @@
-# Yii 2 Vote
-
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![License (3-Clause BSD)](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg?style=flat-square)](LICENSE.md)
-[![Code Climate](https://codeclimate.com/github/hauntd/yii2-vote/badges/gpa.svg?style=flat-square)](https://codeclimate.com/github/hauntd/yii2-vote)
-[![Total Downloads][ico-downloads]][link-downloads]
+# Yii2-Vote [![Latest Version](https://img.shields.io/packagist/v/hauntd/yii2-vote.svg)](https://packagist.org/packages/hauntd/yii2-vote) [![License (3-Clause BSD)](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg?style=flat-square)](LICENSE.md) [![Code Climate](https://codeclimate.com/github/hauntd/yii2-vote/badges/gpa.svg)](https://codeclimate.com/github/hauntd/yii2-vote)
 
 Votes, ratings, likes, favorites.
 
