@@ -21,10 +21,12 @@ class VoteToggle extends BaseWidget
     /**
      * @var string
      */
+
     public $viewName = 'toggle';
     /**
      * @var array
      */
+
     public $buttonOptions = [];
 
     /**

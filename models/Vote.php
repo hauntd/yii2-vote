@@ -78,6 +78,9 @@ class Vote extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getAggregate()
     {
         return $this->hasOne(VoteAggregate::class, [

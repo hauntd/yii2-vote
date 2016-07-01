@@ -2,10 +2,10 @@
 
 namespace hauntd\vote\models;
 
-use hauntd\vote\Module;
 use Yii;
 use yii\base\Model;
 use hauntd\vote\traits\ModuleTrait;
+use hauntd\vote\Module;
 
 /**
  * @author Alexander Kononenko <contact@hauntd.me>
@@ -23,10 +23,12 @@ class VoteForm extends Model
      * @var string entity (e.g. "user.like" or "page.voting")
      */
     public $entity;
+
     /**
      * @var integer target model id
      */
     public $targetId;
+
     /**
      * @var string +/-?
      */

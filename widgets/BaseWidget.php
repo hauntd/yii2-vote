@@ -21,50 +21,62 @@ abstract class BaseWidget extends Widget
      * @var string
      */
     public $entity;
+
     /**
      * @var string
      */
     public $model;
+
     /**
      * @var integer;
      */
     public $targetId;
+
     /**
      * @var string
      */
     public $voteUrl;
+
     /**
      * @var \hauntd\vote\models\VoteAggregate
      */
     public $aggregateModel;
+
     /**
      * @var string
      */
     public $jsBeforeVote;
+
     /**
      * @var string
      */
     public $jsAfterVote;
+
     /**
      * @var string
      */
     public $jsCodeKey = 'vote';
+
     /**
      * @var string
      */
     public $jsErrorVote;
+
     /**
      * @var string
      */
     public $jsShowMessage;
+
     /**
      * @var string
      */
     public $jsChangeCounters;
+
     /**
      * @var array
      */
     public $options = [];
+
     /**
      * @var string
      */
