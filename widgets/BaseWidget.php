@@ -23,7 +23,7 @@ abstract class BaseWidget extends Widget
     public $entity;
 
     /**
-     * @var string
+     * @var \yii\base\Model|\yii\db\ActiveRecord
      */
     public $model;
 
@@ -110,7 +110,7 @@ abstract class BaseWidget extends Widget
             $this->voteUrl = Yii::$app->getUrlManager()->createUrl(['vote/default/vote']);
         }
         if (!isset($this->targetId)) {
-            $this->targetId = $this->model->{$this->model->primaryKey()[0]};
+            $this->targetId = $this->model->getPrimaryKey();
         }
         if (!isset($this->aggregateModel)) {
             $this->aggregateModel = VoteAggregate::findOne([

@@ -85,16 +85,11 @@ class DefaultController extends Controller
         if ($vote == null) {
             $response = $this->createVote($module->encodeEntity($form->entity), $form->targetId, $form->getValue());
         } else {
-            if ($settings['type'] == Module::TYPE_VOTING) {
-                if ($vote->value !== $form->getValue()) {
-                    $vote->value = $form->getValue();
-                    if ($vote->save()) {
-                        $response = ['success' => true, 'changed' => true];
-                    }
+            if ($vote->value !== $form->getValue()) {
+                $vote->value = $form->getValue();
+                if ($vote->save()) {
+                    $response = ['success' => true, 'changed' => true];
                 }
-            } else {
-                $vote->delete();
-                $response = ['success' => true];
             }
         }
 
