@@ -21,7 +21,7 @@ class VoteQueryBehavior extends Behavior
     /**
      * @var bool
      */
-    protected $_selectAdded = false;
+    protected $selectAdded = false;
 
     /**
      * Include vote aggregate model/values.
@@ -93,10 +93,10 @@ class VoteQueryBehavior extends Behavior
      */
     protected function initSelect($model)
     {
-        if (!$this->_selectAdded && (is_array($this->owner->select) && !array_search('*', $this->owner->select)) ||
+        if (!$this->selectAdded && (is_array($this->owner->select) && !array_search('*', $this->owner->select)) ||
             !isset($this->owner->select)) {
             $this->owner->addSelect("{$model->tableSchema->name}.*");
-            $this->_selectAdded = true;
+            $this->selectAdded = true;
         }
     }
 }

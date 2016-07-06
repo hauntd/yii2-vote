@@ -25,12 +25,4 @@ use hauntd\vote\models\Vote;
     <button class="vote-btn vote-up <?= $userValue === Vote::VOTE_POSITIVE ? 'active' : '' ?>" data-action="positive">
         <i class="glyphicon glyphicon-arrow-up"></i>
     </button>
-<!--    <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">-->
-<!--        <meta itemprop="interactionCount" content="Positive: --><?//= $positive?><!--"/>-->
-<!--        <meta itemprop="interactionCount" content="Negative: --><?//= $negative ?><!--"/>-->
-<!--        <meta itemprop="ratingValue" content="--><?//= $rating?><!--"/>-->
-<!--        <meta itemprop="ratingCount" content="--><?//= $positive + $negative?><!--"/>-->
-<!--        <meta itemprop="bestRating" content="10"/>-->
-<!--        <meta itemprop="worstRating" content="0"/>-->
-<!--    </div>-->
 </div>

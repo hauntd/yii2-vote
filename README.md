@@ -22,8 +22,9 @@ to the require section of your `composer.json` file.
 
 ## Configuration
 
-Add module settings to your application config (`config/main.php`):
-Entity names like `item.vote`, `item.vote.guests`, `item.like` and `item.favorite` are used in widgets.
+Add module settings to your application config (`config/main.php`).
+
+Entity names should be in camelCase like `itemVote`, `itemVoteGuests`, `itemLike` and `itemFavorite`.
 
 ```php
 <?php
@@ -33,17 +34,17 @@ return [
       'class' => hauntd\vote\Module::class,
         'guestTimeLimit' => 3600,
         'entities' => [
-          // Entity -> Settings()
-          'item.vote' => app\models\Item::class, // your model
-          'item.vote.guests' => [
+          // Entity -> Settings
+          'itemVote' => app\models\Item::class, // your model
+          'itemVoteGuests' => [
               'modelName' => app\models\Item::class, // your model
               'allowGuests' => true,
           ],
-          'item.like' => [
+          'itemLike' => [
               'modelName' => app\models\Item::class, // your model
               'type' => hauntd\vote\Module::TYPE_TOGGLE, // like/favorite button
           ],
-          'item.favorite' => [
+          'itemFavorite' => [
               'modelName' => app\models\Item::class, // your model
               'type' => hauntd\vote\Module::TYPE_TOGGLE, // like/favorite button
           ],
@@ -65,7 +66,7 @@ Vote widget:
 
 ```php
 <?= \hauntd\vote\widgets\Vote::widget([
-  'entity' => 'item.vote',
+  'entity' => 'itemVote',
   'model' => $model,
   'options' => ['class' => 'vote vote-visible-buttons']
 ]); ?>
@@ -74,13 +75,13 @@ Vote widget:
 Like/Favorite widgets:
 
 ```php
-<?= \hauntd\vote\widgets\VoteToggle::widget([
-    'entity' => 'item.favorite',
+<?= \hauntd\vote\widgets\Favorite::widget([
+    'entity' => 'itemFavorite',
     'model' => $model,
 ]); ?>
 
 <?= \hauntd\vote\widgets\Like::widget([
-    'entity' => 'item.like',
+    'entity' => 'itemLike',
     'model' => $model,
 ]); ?>
 ```
