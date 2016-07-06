@@ -50,6 +50,20 @@ class VoteBehavior extends Behavior
     }
 
     /**
+     * @param $name
+     * @return null|integer
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getUserValue($name)
+    {
+        $entities = $this->getModule()->entities;
+        if (isset($entities[$name])) {
+            return ArrayHelper::getValue($this->voteAttributes, ["{$name}UserValue"]);
+        }
+        return null;
+    }
+
+    /**
      * @param string $name
      * @param mixed $value
      * @throws \yii\base\UnknownPropertyException
@@ -57,7 +71,7 @@ class VoteBehavior extends Behavior
     public function __set($name, $value)
     {
         if ($this->checkAttribute($name)) {
-            $this->voteAttributes[$name] = $value;
+            $this->voteAttributes[$name] = !is_null($value) ? (int) $value : null;
         } else {
             parent::__set($name, $value);
         }
@@ -70,7 +84,8 @@ class VoteBehavior extends Behavior
     protected function checkAttribute($name)
     {
         foreach ($this->getModule()->entities as $entity => $options) {
-            if ($name == "{$entity}Positive" || $name == "{$entity}Negative" || $name == "{$entity}Rating") {
+            if ($name == "{$entity}Positive" || $name == "{$entity}Negative" || $name == "{$entity}Rating" ||
+                $name == "{$entity}UserValue") {
                 return true;
             }
         }

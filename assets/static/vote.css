@@ -29,7 +29,7 @@
   border-radius: 4px;
 }
 .vote .vote-count {
-  background: #ecf0f1;
+  background: #ECF0F1;
   color: #5e7980;
   font-weight: bolder;
   font-size: 11pt;
@@ -65,20 +65,24 @@
   font-size: 11pt;
   color: #a3b6bb;
 }
-.vote .vote-btn:hover {
+.vote .vote-btn:hover,
+.vote .vote-btn.active {
   color: #a3b6bb;
-  background: #ecf0f1;
+  background: #ECF0F1;
 }
-.vote .vote-btn:hover i.glyphicon {
-  color: #ecf0f1;
+.vote .vote-btn:hover i.glyphicon,
+.vote .vote-btn.active i.glyphicon {
+  color: #ECF0F1;
 }
-.vote .vote-btn:hover.vote-up {
-  color: #ecf0f1;
-  background: #03a678;
+.vote .vote-btn:hover.vote-up,
+.vote .vote-btn.active.vote-up {
+  color: #ECF0F1;
+  background: #03A678;
 }
-.vote .vote-btn:hover.vote-down {
-  color: #ecf0f1;
-  background: #d24d57;
+.vote .vote-btn:hover.vote-down,
+.vote .vote-btn.active.vote-down {
+  color: #ECF0F1;
+  background: #D24D57;
 }
 .vote.vote-visible-buttons .vote-btn {
   -moz-opacity: 1;
@@ -97,7 +101,7 @@
   display: inline-block;
   font-weight: bolder;
   font-size: 10pt;
-  background: #ecf0f1;
+  background: #ECF0F1;
   color: #5e7980;
   padding: 0 8px;
   -webkit-border-radius: 4px;

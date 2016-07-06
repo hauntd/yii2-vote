@@ -71,6 +71,7 @@ class VoteToggle extends BaseWidget
             'entity' => $this->entity,
             'model' => $this->model,
             'targetId' => $this->targetId,
+            'userValue' => $this->userValue,
             'count' => isset($this->aggregateModel->positive) ? $this->aggregateModel->positive : 0,
             'options' => $this->options,
             'buttonOptions' => $this->buttonOptions,

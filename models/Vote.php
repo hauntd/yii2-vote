@@ -55,9 +55,17 @@ class Vote extends \yii\db\ActiveRecord
         return [
             [['entity', 'target_id', 'value'], 'required'],
             [['entity', 'target_id', 'user_id', 'value', 'created_at'], 'integer'],
-            [['user_ip'], 'default', 'value' => Yii::$app->request->userIP],
-            [['user_id'], 'default', 'value' => Yii::$app->user->id, 'when' => function() {
-                return Yii::$app->user->isGuest == false;
+            [['user_ip'], 'default', 'value' => function() {
+                if (Yii::$app instanceof \yii\web\Application) {
+                    return Yii::$app->request->userIP;
+                }
+                return null;
+            }],
+            [['user_id'], 'default', 'value' => function() {
+                if (isset(Yii::$app->user) && !Yii::$app->user->isGuest) {
+                    return Yii::$app->user->id;
+                }
+                return null;
             }],
         ];
     }

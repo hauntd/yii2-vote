@@ -38,7 +38,6 @@ class DefaultController extends Controller
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             $settings = $module->getSettingsForEntity($form->entity);
-
             if ($settings['type'] == Module::TYPE_VOTING) {
                 $response = $this->processVote($form);
             } elseif ($settings['type'] == Module::TYPE_TOGGLE) {
@@ -68,7 +67,6 @@ class DefaultController extends Controller
     {
         /* @var $vote Vote */
         $module = $this->getModule();
-        $settings = $module->getSettingsForEntity($form->entity);
         $response = ['success' => false];
         $searchParams = ['entity' => $module->encodeEntity($form->entity), 'target_id' => $form->targetId];
 

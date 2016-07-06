@@ -46,6 +46,7 @@ class Vote extends BaseWidget
             'entity' => $this->entity,
             'model' => $this->model,
             'targetId' => $this->targetId,
+            'userValue' => $this->userValue,
             'positive' => isset($this->aggregateModel->positive) ? $this->aggregateModel->positive : 0,
             'negative' => isset($this->aggregateModel->negative) ? $this->aggregateModel->negative : 0,
             'rating' => isset($this->aggregateModel->rating) ? $this->aggregateModel->rating : 0.0,
@@ -64,6 +65,8 @@ class Vote extends BaseWidget
             $this->jsChangeCounters = "
                 if (typeof(data.success) !== 'undefined') {
                     $('$selector .vote-count').text(data.aggregate.positive - data.aggregate.negative);
+                    vote.find('button').removeClass('active');
+                    button.addClass('active');
                 }
             ";
         }

@@ -43,6 +43,11 @@ abstract class BaseWidget extends Widget
     public $aggregateModel;
 
     /**
+     * @var null|integer
+     */
+    public $userValue = null;
+
+    /**
      * @var string
      */
     public $jsBeforeVote;
