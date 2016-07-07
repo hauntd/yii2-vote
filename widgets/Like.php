@@ -11,6 +11,9 @@ use yii\bootstrap\Html;
  */
 class Like extends VoteToggle
 {
+    /**
+     * @var string
+     */
     public $jsCodeKey = 'vote-like';
 
     /**

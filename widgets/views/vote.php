@@ -18,11 +18,11 @@ use hauntd\vote\models\Vote;
      data-entity="<?= $entity ?>"
      data-target-id="<?= $targetId ?>"
      data-user-value="<?= $userValue ?>">
-    <button class="vote-btn vote-down <?= $userValue === Vote::VOTE_NEGATIVE ? 'active' : '' ?>" data-action="negative">
+    <button class="vote-btn vote-down <?= $userValue === Vote::VOTE_NEGATIVE ? 'vote-active' : '' ?>" data-action="negative">
         <i class="glyphicon glyphicon-arrow-down"></i>
     </button>
     <span class="vote-count"><?= $positive - $negative ?></span>
-    <button class="vote-btn vote-up <?= $userValue === Vote::VOTE_POSITIVE ? 'active' : '' ?>" data-action="positive">
+    <button class="vote-btn vote-up <?= $userValue === Vote::VOTE_POSITIVE ? 'vote-active' : '' ?>" data-action="positive">
         <i class="glyphicon glyphicon-arrow-up"></i>
     </button>
 </div>

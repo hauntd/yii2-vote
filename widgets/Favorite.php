@@ -11,7 +11,15 @@ use yii\bootstrap\Html;
  */
 class Favorite extends VoteToggle
 {
+    /**
+     * @var string
+     */
     public $jsCodeKey = 'vote-favorite';
+
+    /**
+     * @var string
+     */
+    public $viewFile = 'favorite';
 
     /**
      * @return array
@@ -31,6 +39,31 @@ class Favorite extends VoteToggle
         return array_merge(parent::getDefaultButtonOptions(), [
             'icon' => Html::icon('glyphicon glyphicon-star'),
             'label' => Yii::t('vote', 'Add to favorites'),
+            'labelAdd' => Yii::t('vote', 'Add to favorites'),
+            'labelRemove' => Yii::t('vote', 'Remove from favorites'),
         ]);
+    }
+
+    /**
+     * Initialize with default events.
+     */
+    public function initJsEvents()
+    {
+        parent::initJsEvents();
+        $selector = $this->getSelector($this->options['class']);
+        $this->jsChangeCounters = "
+            if (typeof(data.success) !== 'undefined') {
+                $('$selector .vote-count').text(data.aggregate.positive);
+                var label = '';
+                if (data.toggleValue) {
+                    label = button.attr('data-label-remove');
+                    button.addClass('vote-active');
+                } else {
+                    label = button.attr('data-label-add');
+                    button.removeClass('vote-active');
+                }
+                button.find('.vote-label').text(label);
+            }
+        ";
     }
 }

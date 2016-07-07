@@ -21,12 +21,11 @@ class VoteToggle extends BaseWidget
     /**
      * @var string
      */
+    public $viewFile = 'toggle';
 
-    public $viewName = 'toggle';
     /**
      * @var array
      */
-
     public $buttonOptions = [];
 
     /**
@@ -45,7 +44,7 @@ class VoteToggle extends BaseWidget
     public function getDefaultButtonOptions()
     {
         return [
-            'class' => 'vote-toggle btn btn-default',
+            'class' => 'vote-btn btn btn-default',
             'icon' => Html::icon('glyphicon glyphicon-arrow-up'),
             'label' => Yii::t('vote', 'Vote up'),
         ];
@@ -66,7 +65,7 @@ class VoteToggle extends BaseWidget
      */
     public function run()
     {
-        return $this->render($this->viewName, [
+        return $this->render($this->viewFile, [
             'jsCodeKey' => $this->jsCodeKey,
             'entity' => $this->entity,
             'model' => $this->model,
@@ -89,6 +88,11 @@ class VoteToggle extends BaseWidget
             $this->jsChangeCounters = "
                 if (typeof(data.success) !== 'undefined') {
                     $('$selector .vote-count').text(data.aggregate.positive);
+                    if (data.toggleValue) {
+                        button.addClass('vote-active');
+                    } else {
+                        button.removeClass('vote-active');
+                    }
                 }
             ";
         }

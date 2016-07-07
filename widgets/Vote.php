@@ -12,6 +12,9 @@ use Yii;
  */
 class Vote extends BaseWidget
 {
+    /**
+     * @var string
+     */
     public $jsCodeKey = 'vote';
 
     /**
@@ -41,7 +44,7 @@ class Vote extends BaseWidget
      */
     public function run()
     {
-        return $this->render($this->viewName, [
+        return $this->render($this->viewFile, [
             'jsCodeKey' => $this->jsCodeKey,
             'entity' => $this->entity,
             'model' => $this->model,
@@ -65,8 +68,8 @@ class Vote extends BaseWidget
             $this->jsChangeCounters = "
                 if (typeof(data.success) !== 'undefined') {
                     $('$selector .vote-count').text(data.aggregate.positive - data.aggregate.negative);
-                    vote.find('button').removeClass('active');
-                    button.addClass('active');
+                    vote.find('button').removeClass('vote-active');
+                    button.addClass('vote-active');
                 }
             ";
         }

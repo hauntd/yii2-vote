@@ -39,7 +39,7 @@
       font-size: 11pt;
       color: darken(@neutral, @darken);
     }
-    &:hover, &.active {
+    &:hover, &.vote-active {
       color: darken(@neutral, @darken);
       background: @neutral;
       i.glyphicon {
@@ -79,6 +79,20 @@
       color: darken(@neutral, 50%);
       padding: 0 8px;
       .rounded(4px);
+    }
+  }
+  &.vote-toggle-like {
+    .vote-btn.vote-active {
+      .vote-icon {
+        color: #e74c3c;
+      }
+    }
+  }
+  &.vote-toggle-favorite {
+    .vote-btn.vote-active {
+      .vote-icon {
+        color: #f39c12;
+      }
     }
   }
 }

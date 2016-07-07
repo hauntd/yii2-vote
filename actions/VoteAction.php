@@ -112,9 +112,10 @@ class VoteAction extends Action
 
         if ($vote == null) {
             $response = $this->createVote($module->encodeEntity($form->entity), $form->targetId, $form->getValue());
+            $response['toggleValue'] = 1;
         } else {
             $vote->delete();
-            $response = ['success' => true];
+            $response = ['success' => true, 'toggleValue' => 0];
         }
 
         return $response;

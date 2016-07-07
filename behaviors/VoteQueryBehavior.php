@@ -66,14 +66,14 @@ class VoteQueryBehavior extends Behavior
         $this->initSelect($model);
 
         $joinCondition = [
-            "$entity.target_id" => new Expression("`{$model->tableSchema->name}`.`{$model->primaryKey()[0]}`"),
             "$entity.entity" => $entityEncoded,
+            "$entity.target_id" => new Expression("`{$model->tableSchema->name}`.`{$model->primaryKey()[0]}`"),
         ];
 
+        $this->owner->addGroupBy("`{$model->tableSchema->name}`.`{$model->tableSchema->primaryKey[0]}`");
         if (Yii::$app->user->isGuest) {
             $joinCondition["{$entity}.user_ip"] = Yii::$app->request->userIP;
             $joinCondition["{$entity}.user_id"] = null;
-            $this->owner->addGroupBy("`{$model->tableSchema->name}`.`{$model->tableSchema->primaryKey[0]}`");
         } else {
             $joinCondition["{$entity}.user_id"] = Yii::$app->user->id;
         }

@@ -66,21 +66,21 @@
   color: #a3b6bb;
 }
 .vote .vote-btn:hover,
-.vote .vote-btn.active {
+.vote .vote-btn.vote-active {
   color: #a3b6bb;
   background: #ECF0F1;
 }
 .vote .vote-btn:hover i.glyphicon,
-.vote .vote-btn.active i.glyphicon {
+.vote .vote-btn.vote-active i.glyphicon {
   color: #ECF0F1;
 }
 .vote .vote-btn:hover.vote-up,
-.vote .vote-btn.active.vote-up {
+.vote .vote-btn.vote-active.vote-up {
   color: #ECF0F1;
   background: #03A678;
 }
 .vote .vote-btn:hover.vote-down,
-.vote .vote-btn.active.vote-down {
+.vote .vote-btn.vote-active.vote-down {
   color: #ECF0F1;
   background: #D24D57;
 }
@@ -107,4 +107,10 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+}
+.vote-toggle.vote-toggle-like .vote-btn.vote-active .vote-icon {
+  color: #e74c3c;
+}
+.vote-toggle.vote-toggle-favorite .vote-btn.vote-active .vote-icon {
+  color: #f39c12;
 }

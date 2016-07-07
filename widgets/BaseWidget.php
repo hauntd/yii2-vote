@@ -85,7 +85,7 @@ abstract class BaseWidget extends Widget
     /**
      * @var string
      */
-    public $viewName = 'vote';
+    public $viewFile = 'vote';
 
     /**
      * @param $classes
