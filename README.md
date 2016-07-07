@@ -2,6 +2,9 @@
 
 Votes, ratings, likes, favorites.
 
+https://raw.githubusercontent.com/hauntd/resources/master/yii2-vote/output.gif
+![Demo](https://raw.githubusercontent.com/hauntd/resources/master/yii2-vote/output.gif)
+
 ## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
