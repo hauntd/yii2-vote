@@ -1,6 +1,6 @@
 # Yii2-Vote [![Latest Version](https://img.shields.io/packagist/v/hauntd/yii2-vote.svg)](https://packagist.org/packages/hauntd/yii2-vote) [![License (3-Clause BSD)](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg?style=flat-square)](LICENSE.md) [![Code Climate](https://codeclimate.com/github/hauntd/yii2-vote/badges/gpa.svg)](https://codeclimate.com/github/hauntd/yii2-vote)
 
-Votes, ratings, likes, favorites.
+This module allows you to attach vote widgets, like/favorite buttons to your models.
 
 ![Demo](https://raw.githubusercontent.com/hauntd/resources/master/yii2-vote/output.gif)
 
