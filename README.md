@@ -2,7 +2,6 @@
 
 Votes, ratings, likes, favorites.
 
-https://raw.githubusercontent.com/hauntd/resources/master/yii2-vote/output.gif
 ![Demo](https://raw.githubusercontent.com/hauntd/resources/master/yii2-vote/output.gif)
 
 ## Installation
