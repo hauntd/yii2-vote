@@ -15,13 +15,11 @@ Thumbs.db
 # composer related
 /vendor
 composer.phar
-composer.lock
 
 # Mac DS_Store Files
 .DS_Store
 
-# phpunit itself is not needed
+# phpunit
 phpunit.phar
-# local phpunit config
 /phpunit.xml
 /coverage
