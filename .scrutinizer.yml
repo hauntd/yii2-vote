@@ -5,3 +5,17 @@ checks:
         code_rating: true
         duplication: true
         
+filter:
+  excluded_paths:
+    - vendor/*
+
+before_commands:
+  - "composer install --prefer-source"
+  - "composer global require 'fxp/composer-asset-plugin:~1.1'"
+
+tools:
+  php_code_sniffer:
+    config:
+      standard: "PSR2"
+  php_cs_fixer: true
+  sensiolabs_security_checker: true
