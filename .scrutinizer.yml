@@ -10,8 +10,8 @@ filter:
     - vendor/*
 
 before_commands:
-  - "composer install --prefer-source"
   - "composer global require 'fxp/composer-asset-plugin:~1.1'"
+  - "composer install --prefer-source"
 
 tools:
   php_code_sniffer:
