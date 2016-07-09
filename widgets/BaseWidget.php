@@ -136,22 +136,4 @@ abstract class BaseWidget extends Widget
             ]);
         }
     }
-
-    /**
-     * Initialize default JS events.
-     */
-    public function initJsEvents()
-    {
-        $selector = $this->getSelector($this->options['class']);
-        if (!isset($this->jsShowMessage)) {
-            $this->jsShowMessage = "
-                /** todo **/
-            ";
-        }
-        if (!isset($this->jsErrorVote)) {
-            $this->jsErrorVote = "
-                /** todo **/
-            ";
-        }
-    }
 }

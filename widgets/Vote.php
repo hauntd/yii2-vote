@@ -62,7 +62,6 @@ class Vote extends BaseWidget
      */
     public function initJsEvents()
     {
-        parent::initJsEvents();
         $selector = $this->getSelector($this->options['class']);
         if (!isset($this->jsChangeCounters)) {
             $this->jsChangeCounters = "
