@@ -124,9 +124,9 @@ class VoteAction extends Action
     /**
      * Creates new vote entry and returns response data.
      *
-     * @param $entity
-     * @param $targetId
-     * @param $value
+     * @param string $entity
+     * @param integer $targetId
+     * @param integer $value
      * @return array
      */
     protected function createVote($entity, $targetId, $value)

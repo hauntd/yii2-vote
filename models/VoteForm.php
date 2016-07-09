@@ -57,36 +57,28 @@ class VoteForm extends Model
     }
 
     /**
-     * @param $attribute
-     * @param $params
      * @return bool
      * @throws \yii\base\InvalidConfigException
      */
-    public function checkModel($attribute, $params)
+    public function checkModel()
     {
         $module = $this->getModule();
         $settings = $module->getSettingsForEntity($this->entity);
+        $allowGuests = isset($settings['allowGuests']) ? $settings['allowGuests'] : false;
 
         if ($settings == null) {
             $this->addError('entity', Yii::t('vote', 'This entity is not supported.'));
             return false;
         }
-        if (Yii::$app->user->isGuest && $settings['type'] == Module::TYPE_TOGGLE) {
-            $this->addError('entity', Yii::t('vote', 'Guests are not allowed for this type of voting.'));
-            return false;
+        if (Yii::$app->user->isGuest) {
+            if ($settings['type'] == Module::TYPE_TOGGLE || !$allowGuests) {
+                $this->addError('entity', Yii::t('vote', 'Guests are not allowed for this voting.'));
+                return false;
+            }
         }
         $targetModel = Yii::createObject($settings['modelName']);
         if ($targetModel->findOne(['id' => $this->targetId]) == null) {
             $this->addError('targetId', Yii::t('vote', 'Target model not found.'));
-            return false;
-        }
-        $allowGuests = isset($settings['allowGuests']) ? $settings['allowGuests'] : false;
-        if ($allowGuests == false && Yii::$app->user->isGuest) {
-            $this->addError('entity', Yii::t('vote', 'Guests are not allowed.'));
-            return false;
-        }
-        if ($allowGuests && $settings['type'] !== Module::TYPE_VOTING) {
-            $this->addError('entity', Yii::t('vote', 'Only voting is allowed for guests.'));
             return false;
         }
 
