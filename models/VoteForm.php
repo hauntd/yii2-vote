@@ -4,6 +4,7 @@ namespace hauntd\vote\models;
 
 use Yii;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 use hauntd\vote\traits\ModuleTrait;
 use hauntd\vote\Module;
 
@@ -64,17 +65,15 @@ class VoteForm extends Model
     {
         $module = $this->getModule();
         $settings = $module->getSettingsForEntity($this->entity);
-        $allowGuests = isset($settings['allowGuests']) ? $settings['allowGuests'] : false;
+        $allowGuests = ArrayHelper::getValue($settings, 'allowGuests', false);
 
-        if ($settings == null) {
+        if (!$settings) {
             $this->addError('entity', Yii::t('vote', 'This entity is not supported.'));
             return false;
         }
-        if (Yii::$app->user->isGuest) {
-            if ($settings['type'] == Module::TYPE_TOGGLE || !$allowGuests) {
-                $this->addError('entity', Yii::t('vote', 'Guests are not allowed for this voting.'));
-                return false;
-            }
+        if (Yii::$app->user->isGuest && ($settings['type'] == Module::TYPE_TOGGLE || !$allowGuests)) {
+            $this->addError('entity', Yii::t('vote', 'Guests are not allowed for this voting.'));
+            return false;
         }
         $targetModel = Yii::createObject($settings['modelName']);
         if ($targetModel->findOne(['id' => $this->targetId]) == null) {

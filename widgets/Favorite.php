@@ -52,7 +52,7 @@ class Favorite extends VoteToggle
         parent::initJsEvents();
         $selector = $this->getSelector($this->options['class']);
         $this->jsChangeCounters = "
-            if (typeof(data.success) !== 'undefined') {
+            if (data.success) {
                 $('$selector .vote-count').text(data.aggregate.positive);
                 var label = '';
                 if (data.toggleValue) {
