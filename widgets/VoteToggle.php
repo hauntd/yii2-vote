@@ -96,6 +96,18 @@ class VoteToggle extends BaseWidget
                 }
             ";
         }
+        if (!isset($this->jsBeforeVote)) {
+            $this->jsBeforeVote = "
+                $('$selector .vote-btn').prop('disabled', 'disabled').addClass('vote-loading');
+                $('$selector .vote-btn').append('<div class=\"vote-loader\"><span></span><span></span><span></span></div>');
+            ";
+        }
+        if (!isset($this->jsAfterVote)) {
+            $this->jsAfterVote = "
+                $('$selector .vote-btn').prop('disabled', false).removeClass('vote-loading');
+                $('$selector .vote-btn .vote-loader').remove();
+            ";
+        }
     }
 
     /**

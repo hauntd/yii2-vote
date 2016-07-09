@@ -5,11 +5,20 @@
 @neutral: #ECF0F1;
 @darken: 25%;
 @lighten: 10%;
+@loader-color-bg: #E6E7ED;
+@loader-color-animation: #9E9EA1;
+@loader-size: 7px;
+@loader-margin: 2px;
 
 .vote {
   &:hover {
     .vote-btn {
-      .transition(opacity 0.2s ease);
+      .transition(opacity 0.15s ease);
+      .opacity(1);
+    }
+  }
+  &.vote-visible-buttons {
+    .vote-btn {
       .opacity(1);
     }
   }
@@ -18,6 +27,7 @@
     .rounded(4px);
   }
   .vote-count {
+    position: relative;
     background: @neutral;
     color: darken(@neutral, 50%);
     font-weight: bolder;
@@ -25,6 +35,11 @@
     display: inline-block;
     padding: 3px 12px;
     .rounded(4px);
+    &.vote-loading > span {
+      animation: 1s voteFadeOut;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
   }
   .vote-btn {
     border: 0;
@@ -54,22 +69,20 @@
         background: @negative;
       }
     }
-  }
-  &.vote-visible-buttons {
-    .vote-btn {
-      .opacity(1);
+    &.vote-loading {
+      animation: 1s voteHalfOpacity;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
     }
   }
 }
 .vote-toggle {
   .vote-btn {
+    position: relative;
     .vote-icon {
       margin-right: 7px;
       padding-right: 7px;
       border-right: 1px solid #aaa;
-    }
-    .vote-label {
-
     }
     .vote-count {
       display: inline-block;
@@ -79,6 +92,13 @@
       color: darken(@neutral, 50%);
       padding: 0 8px;
       .rounded(4px);
+    }
+    &.vote-loading {
+      .vote-icon, .vote-label, .vote-count {
+        animation: 1s voteHalfOpacity;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+      }
     }
   }
   &.vote-toggle-like {
@@ -95,4 +115,63 @@
       }
     }
   }
+}
+.vote, .vote-toggle {
+  .vote-loader {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    left: 0;
+    height: @loader-size;
+    text-align: center;
+    animation: 1s voteFadeIn;
+    animation-iteration-count: 1;
+    span {
+      height: @loader-size;
+      width: @loader-size;
+      margin-left: @loader-margin;
+      margin-right: @loader-margin;
+      background-color: @loader-color-animation;
+      border-radius: 50%;
+      position: relative;
+      top: -(@loader-size + @loader-size / 2);
+      display: inline-block;
+      &:nth-of-type(1) {
+        animation: 1s voteBlink infinite (.334s);
+      }
+      &:nth-of-type(2) {
+        animation: 1s voteBlink infinite (.667s);
+      }
+      &:nth-of-type(3) {
+        animation: 1s voteBlink infinite (1s);
+      }
+    }
+  }
+}
+
+.animateOpacity(@from, @to) {
+  from {
+    .opacity(@from);
+  }
+  to {
+    .opacity(@to);
+  }
+}
+
+@keyframes voteBlink{
+  50% {
+    background-color: #3498db;
+  }
+}
+
+@keyframes voteFadeIn {
+  .animateOpacity(0, 1);
+}
+
+@keyframes voteFadeOut {
+  .animateOpacity(1, 0);
+}
+
+@keyframes voteHalfOpacity {
+  .animateOpacity(1, 0.2);
 }

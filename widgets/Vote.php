@@ -67,10 +67,24 @@ class Vote extends BaseWidget
         if (!isset($this->jsChangeCounters)) {
             $this->jsChangeCounters = "
                 if (typeof(data.success) !== 'undefined') {
-                    $('$selector .vote-count').text(data.aggregate.positive - data.aggregate.negative);
+                    $('$selector .vote-count span').text(data.aggregate.positive - data.aggregate.negative);
                     vote.find('button').removeClass('vote-active');
                     button.addClass('vote-active');
                 }
+            ";
+        }
+        if (!isset($this->jsBeforeVote)) {
+            $this->jsBeforeVote = "
+                $('$selector .vote-btn').prop('disabled', 'disabled').addClass('vote-loading');
+                $('$selector .vote-count')
+                    .addClass('vote-loading')
+                    .append('<div class=\"vote-loader\"><span></span><span></span><span></span></div>');
+            ";
+        }
+        if (!isset($this->jsAfterVote)) {
+            $this->jsAfterVote = "
+                $('$selector .vote-btn').prop('disabled', false).removeClass('vote-loading');
+                $('$selector .vote-count').removeClass('vote-loading').find('.vote-loader').remove();
             ";
         }
     }

@@ -21,7 +21,9 @@ use hauntd\vote\models\Vote;
     <button class="vote-btn vote-down <?= $userValue === Vote::VOTE_NEGATIVE ? 'vote-active' : '' ?>" data-action="negative">
         <i class="glyphicon glyphicon-arrow-down"></i>
     </button>
-    <span class="vote-count"><?= $positive - $negative ?></span>
+    <div class="vote-count">
+        <span><?= $positive - $negative ?></span>
+    </div>
     <button class="vote-btn vote-up <?= $userValue === Vote::VOTE_POSITIVE ? 'vote-active' : '' ?>" data-action="positive">
         <i class="glyphicon glyphicon-arrow-up"></i>
     </button>

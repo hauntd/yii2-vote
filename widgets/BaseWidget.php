@@ -143,16 +143,6 @@ abstract class BaseWidget extends Widget
     public function initJsEvents()
     {
         $selector = $this->getSelector($this->options['class']);
-        if (!isset($this->jsBeforeVote)) {
-            $this->jsBeforeVote = "
-                $('$selector button').prop('disabled', 'disabled').addClass('btn-loading');
-            ";
-        }
-        if (!isset($this->jsAfterVote)) {
-            $this->jsAfterVote = "
-                $('$selector button').prop('disabled', false).removeClass('btn-loading');
-            ";
-        }
         if (!isset($this->jsShowMessage)) {
             $this->jsShowMessage = "
                 /** todo **/
