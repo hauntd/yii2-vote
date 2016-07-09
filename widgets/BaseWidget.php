@@ -23,7 +23,7 @@ abstract class BaseWidget extends Widget
     public $entity;
 
     /**
-     * @var \yii\base\Model|\yii\db\ActiveRecord
+     * @var null|\yii\db\ActiveRecord
      */
     public $model;
 
@@ -117,7 +117,28 @@ abstract class BaseWidget extends Widget
     }
 
     /**
-     * Initialize with default events.
+     * Initialize widget with default options.
+     *
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function initDefaults()
+    {
+        if (!isset($this->voteUrl)) {
+            $this->voteUrl = Yii::$app->getUrlManager()->createUrl(['vote/default/vote']);
+        }
+        if (!isset($this->targetId)) {
+            $this->targetId = $this->model->getPrimaryKey();
+        }
+        if (!isset($this->aggregateModel)) {
+            $this->aggregateModel = VoteAggregate::findOne([
+                'entity' => $this->getModule()->encodeEntity($this->entity),
+                'target_id' => $this->targetId,
+            ]);
+        }
+    }
+
+    /**
+     * Initialize default JS events.
      */
     public function initJsEvents()
     {
@@ -141,27 +162,6 @@ abstract class BaseWidget extends Widget
             $this->jsErrorVote = "
                 /** todo **/
             ";
-        }
-    }
-
-    /**
-     * Init with default options.
-     *
-     * @throws \yii\base\InvalidConfigException
-     */
-    public function initDefaults()
-    {
-        if (!isset($this->voteUrl)) {
-            $this->voteUrl = Yii::$app->getUrlManager()->createUrl(['vote/default/vote']);
-        }
-        if (!isset($this->targetId)) {
-            $this->targetId = $this->model->getPrimaryKey();
-        }
-        if (!isset($this->aggregateModel)) {
-            $this->aggregateModel = VoteAggregate::findOne([
-                'entity' => $this->getModule()->encodeEntity($this->entity),
-                'target_id' => $this->targetId,
-            ]);
         }
     }
 }
