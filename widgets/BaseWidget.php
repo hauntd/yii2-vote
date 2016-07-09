@@ -28,7 +28,7 @@ abstract class BaseWidget extends Widget
     public $model;
 
     /**
-     * @var integer;
+     * @var null|integer;
      */
     public $targetId;
 
@@ -38,7 +38,7 @@ abstract class BaseWidget extends Widget
     public $voteUrl;
 
     /**
-     * @var \hauntd\vote\models\VoteAggregate
+     * @var null|\hauntd\vote\models\VoteAggregate
      */
     public $aggregateModel;
 
@@ -108,18 +108,8 @@ abstract class BaseWidget extends Widget
         if (!isset($this->entity) || !isset($this->model)) {
             throw new InvalidParamException(Yii::t('vote', 'Entity and model must be set.'));
         }
-        if (!isset($this->voteUrl)) {
-            $this->voteUrl = Yii::$app->getUrlManager()->createUrl(['vote/default/vote']);
-        }
-        if (!isset($this->targetId)) {
-            $this->targetId = $this->model->getPrimaryKey();
-        }
-        if (!isset($this->aggregateModel)) {
-            $this->aggregateModel = VoteAggregate::findOne([
-                'entity' => $this->getModule()->encodeEntity($this->entity),
-                'target_id' => $this->targetId,
-            ]);
-        }
+
+        $this->initDefaults();
 
         if ($this->getModule()->registerAsset) {
             $this->view->registerAssetBundle(VoteAsset::class);
@@ -151,6 +141,27 @@ abstract class BaseWidget extends Widget
             $this->jsErrorVote = "
                 /** todo **/
             ";
+        }
+    }
+
+    /**
+     * Init with default options.
+     *
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function initDefaults()
+    {
+        if (!isset($this->voteUrl)) {
+            $this->voteUrl = Yii::$app->getUrlManager()->createUrl(['vote/default/vote']);
+        }
+        if (!isset($this->targetId)) {
+            $this->targetId = $this->model->getPrimaryKey();
+        }
+        if (!isset($this->aggregateModel)) {
+            $this->aggregateModel = VoteAggregate::findOne([
+                'entity' => $this->getModule()->encodeEntity($this->entity),
+                'target_id' => $this->targetId,
+            ]);
         }
     }
 }
