@@ -15,6 +15,11 @@ class Module extends \yii\base\Module
     const TYPE_TOGGLE = 'toggle';
 
     /**
+     * @var bool Apply default styles by default
+     */
+    public $registerAsset = true;
+
+    /**
      * @var string
      */
     public $controllerNamespace = 'hauntd\vote\controllers';

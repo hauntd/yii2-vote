@@ -105,11 +105,8 @@ abstract class BaseWidget extends Widget
     {
         parent::init();
 
-        if (!isset($this->entity)) {
-            throw new InvalidParamException(Yii::t('vote', 'Entity must be set.'));
-        }
-        if (!isset($this->model)) {
-            throw new InvalidParamException(Yii::t('vote', 'Model must be set.'));
+        if (!isset($this->entity) || !isset($this->model)) {
+            throw new InvalidParamException(Yii::t('vote', 'Entity and model must be set.'));
         }
         if (!isset($this->voteUrl)) {
             $this->voteUrl = Yii::$app->getUrlManager()->createUrl(['vote/default/vote']);
@@ -124,7 +121,9 @@ abstract class BaseWidget extends Widget
             ]);
         }
 
-        $this->view->registerAssetBundle(VoteAsset::class);
+        if ($this->getModule()->registerAsset) {
+            $this->view->registerAssetBundle(VoteAsset::class);
+        }
     }
 
     /**

@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.2-dev] - 2016-07-09
+
+`new` Ability to exclude default styles (VoteAsset)
+
 ## [0.2.1] - 2016-07-08
 
 `enh` Visual improvements
