@@ -2,8 +2,6 @@
 
 namespace hauntd\vote\widgets;
 
-use yii\web\View;
-use yii\web\JsExpression;
 use Yii;
 
 /**
@@ -63,15 +61,6 @@ class Vote extends BaseWidget
     public function initJsEvents()
     {
         $selector = $this->getSelector($this->options['class']);
-        if (!isset($this->jsChangeCounters)) {
-            $this->jsChangeCounters = "
-                if (typeof(data.success) !== 'undefined') {
-                    $('$selector .vote-count span').text(data.aggregate.positive - data.aggregate.negative);
-                    vote.find('button').removeClass('vote-active');
-                    button.addClass('vote-active');
-                }
-            ";
-        }
         if (!isset($this->jsBeforeVote)) {
             $this->jsBeforeVote = "
                 $('$selector .vote-btn').prop('disabled', 'disabled').addClass('vote-loading');
@@ -86,30 +75,14 @@ class Vote extends BaseWidget
                 $('$selector .vote-count').removeClass('vote-loading').find('.vote-loader').remove();
             ";
         }
-    }
-
-    /**
-     * Registers jQuery handler.
-     */
-    protected function registerJs()
-    {
-        $js = new JsExpression("
-            $('body').on('click', '[data-rel=\"{$this->jsCodeKey}\"] button', function(event) {
-                var vote = $(this).closest('[data-rel=\"{$this->jsCodeKey}\"]'),
-                    button = $(this),
-                    action = button.attr('data-action'),
-                    entity = vote.attr('data-entity'),
-                    target = vote.attr('data-target-id');
-                jQuery.ajax({
-                    url: '$this->voteUrl', type: 'POST', dataType: 'json', cache: false,
-                    data: { 'VoteForm[entity]': entity, 'VoteForm[targetId]': target, 'VoteForm[action]': action },
-                    beforeSend: function(jqXHR, settings) { $this->jsBeforeVote },
-                    success: function(data, textStatus, jqXHR) { $this->jsChangeCounters $this->jsShowMessage },
-                    complete: function(jqXHR, textStatus) { $this->jsAfterVote },
-                    error: function(jqXHR, textStatus, errorThrown) { $this->jsErrorVote }
-                });
-            });
-        ");
-        $this->view->registerJs($js, View::POS_END, $this->jsCodeKey);
+        if (!isset($this->jsChangeCounters)) {
+            $this->jsChangeCounters = "
+                if (data.success) {
+                    $('$selector .vote-count span').text(data.aggregate.positive - data.aggregate.negative);
+                    vote.find('button').removeClass('vote-active');
+                    button.addClass('vote-active');
+                }
+            ";
+        }
     }
 }

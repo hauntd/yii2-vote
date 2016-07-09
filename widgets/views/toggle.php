@@ -18,7 +18,8 @@ use yii\helpers\Html;
      data-entity="<?= $entity ?>"
      data-target-id="<?= $targetId ?>"
      data-user-value="<?= $userValue ?>">
-    <button class="vote-btn <?= $buttonOptions['class'] ?> <?= $userValue === Vote::VOTE_POSITIVE ? 'vote-active' : '' ?>">
+    <button class="vote-btn <?= $buttonOptions['class'] ?> <?= $userValue === Vote::VOTE_POSITIVE ? 'vote-active' : '' ?>"
+            data-action="toggle">
         <span class="vote-icon"><?= $buttonOptions['icon'] ?></span>
         <span class="vote-label"><?= Html::encode($buttonOptions['label']) ?></span>
         <span class="vote-count"><?= $count ?></span>

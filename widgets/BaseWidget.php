@@ -7,6 +7,8 @@ use hauntd\vote\models\VoteAggregate;
 use hauntd\vote\traits\ModuleTrait;
 use yii\base\InvalidParamException;
 use yii\base\Widget;
+use yii\web\View;
+use yii\web\JsExpression;
 use Yii;
 
 /**
@@ -135,5 +137,30 @@ abstract class BaseWidget extends Widget
                 'target_id' => $this->targetId,
             ]);
         }
+    }
+
+    /**
+     * Registers jQuery handler.
+     */
+    protected function registerJs()
+    {
+        $jsCode = new JsExpression("
+            $('body').on('click', '[data-rel=\"{$this->jsCodeKey}\"] button', function(event) {
+                var vote = $(this).closest('[data-rel=\"{$this->jsCodeKey}\"]'),
+                    button = $(this),
+                    action = button.attr('data-action'),
+                    entity = vote.attr('data-entity'),
+                    target = vote.attr('data-target-id');
+                jQuery.ajax({
+                    url: '$this->voteUrl', type: 'POST', dataType: 'json', cache: false,
+                    data: { 'VoteForm[entity]': entity, 'VoteForm[targetId]': target, 'VoteForm[action]': action },
+                    beforeSend: function(jqXHR, settings) { $this->jsBeforeVote },
+                    success: function(data, textStatus, jqXHR) { $this->jsChangeCounters $this->jsShowMessage },
+                    complete: function(jqXHR, textStatus) { $this->jsAfterVote },
+                    error: function(jqXHR, textStatus, errorThrown) { $this->jsErrorVote }
+                });
+            });
+        ");
+        $this->view->registerJs($jsCode, View::POS_END, $this->jsCodeKey);
     }
 }

@@ -20,7 +20,8 @@ use yii\helpers\Html;
      data-user-value="<?= $userValue ?>">
     <button class="vote-btn <?= $buttonOptions['class'] ?> <?= $userValue === Vote::VOTE_POSITIVE ? 'vote-active' : '' ?>"
             data-label-add="<?= Html::encode($buttonOptions['labelAdd']) ?>"
-            data-label-remove="<?= Html::encode($buttonOptions['labelRemove']) ?>">
+            data-label-remove="<?= Html::encode($buttonOptions['labelRemove']) ?>"
+            data-action="toggle">
         <span class="vote-icon"><?= $buttonOptions['icon'] ?></span>
         <span class="vote-label">
             <?= Html::encode($buttonOptions[$userValue == Vote::VOTE_POSITIVE ? 'labelRemove' : 'labelAdd']) ?>
