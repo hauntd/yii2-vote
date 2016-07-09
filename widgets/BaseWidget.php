@@ -90,12 +90,11 @@ abstract class BaseWidget extends Widget
     public $viewFile = 'vote';
 
     /**
-     * @param $classes
      * @return string
      */
-    public function getSelector($classes)
+    public function getSelector()
     {
-        $classes = str_replace(' ', '.', $classes);
+        $classes = str_replace(' ', '.', $this->options['class']);
         return ".{$classes}[data-entity=\"' + entity + '\"][data-target-id=\"' + target  + '\"]";
     }
 

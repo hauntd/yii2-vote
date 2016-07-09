@@ -46,11 +46,12 @@ class Favorite extends VoteToggle
 
     /**
      * Initialize with default events.
+     * 
+     * @param string $selector
      */
-    public function initJsEvents()
+    public function initJsEvents($selector)
     {
-        parent::initJsEvents();
-        $selector = $this->getSelector($this->options['class']);
+        parent::initJsEvents($selector);
         $this->jsChangeCounters = "
             if (data.success) {
                 $('$selector .vote-count').text(data.aggregate.positive);

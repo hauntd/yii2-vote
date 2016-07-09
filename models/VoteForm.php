@@ -65,12 +65,11 @@ class VoteForm extends Model
     {
         $module = $this->getModule();
         $settings = $module->getSettingsForEntity($this->entity);
-        $allowGuests = ArrayHelper::getValue($settings, 'allowGuests', false);
-
-        if (!$settings) {
+        if ($settings === null) {
             $this->addError('entity', Yii::t('vote', 'This entity is not supported.'));
             return false;
         }
+        $allowGuests = ArrayHelper::getValue($settings, 'allowGuests', false);
         if (Yii::$app->user->isGuest && ($settings['type'] == Module::TYPE_TOGGLE || !$allowGuests)) {
             $this->addError('entity', Yii::t('vote', 'Guests are not allowed for this voting.'));
             return false;

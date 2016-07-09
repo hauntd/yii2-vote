@@ -83,7 +83,7 @@ class VoteBehavior extends Behavior
      */
     protected function checkAttribute($name)
     {
-        foreach ($this->getModule()->entities as $entity => $options) {
+        foreach (array_keys($this->getModule()->entities) as $entity) {
             if ($name == "{$entity}Positive" || $name == "{$entity}Negative" || $name == "{$entity}Rating" ||
                 $name == "{$entity}UserValue") {
                 return true;

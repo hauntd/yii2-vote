@@ -32,7 +32,7 @@ class Vote extends BaseWidget
     {
         parent::init();
         $this->options = array_merge($this->getDefaultOptions(), $this->options);
-        $this->initJsEvents();
+        $this->initJsEvents($this->getSelector($this->options['class']));
         $this->registerJs();
     }
 
@@ -57,10 +57,11 @@ class Vote extends BaseWidget
 
     /**
      * Initialize with default events.
+     * 
+     * @param string $selector
      */
-    public function initJsEvents()
+    public function initJsEvents($selector)
     {
-        $selector = $this->getSelector($this->options['class']);
         if (!isset($this->jsBeforeVote)) {
             $this->jsBeforeVote = "
                 $('$selector .vote-btn').prop('disabled', 'disabled').addClass('vote-loading');
