@@ -4,7 +4,7 @@ This module allows you to attach vote widgets, like/favorite buttons to your mod
 
 ![Demo](https://raw.githubusercontent.com/hauntd/resources/master/yii2-vote/output.gif)
 
-- Attach widgets to model as many widgets as you need
+- Attach as many widgets to model as you need
 - Customization (action, events, views)
 - Useful widgets included (Favorite button, Like button, Rating "up/down")
 
