@@ -1,8 +1,9 @@
 # Changelog
 
-## [0.2.2-dev] - 2016-07-10
+## [0.2.2] - 2016-07-10
 
 - `enh` Visual improvements, loading state
+- `new` Added view params to widgets
 - `new` Added vote action events (beforeAction, afterAction)
 - `new` Ability to exclude default styles (VoteAsset)
 

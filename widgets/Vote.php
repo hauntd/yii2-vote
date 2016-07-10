@@ -42,7 +42,7 @@ class Vote extends BaseWidget
      */
     public function run()
     {
-        return $this->render($this->viewFile, [
+        return $this->render($this->viewFile, $this->getViewParams([
             'jsCodeKey' => $this->jsCodeKey,
             'entity' => $this->entity,
             'model' => $this->model,
@@ -52,7 +52,7 @@ class Vote extends BaseWidget
             'negative' => isset($this->aggregateModel->negative) ? $this->aggregateModel->negative : 0,
             'rating' => isset($this->aggregateModel->rating) ? $this->aggregateModel->rating : 0.0,
             'options' => $this->options,
-        ]);
+        ]));
     }
 
     /**

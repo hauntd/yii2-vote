@@ -90,6 +90,11 @@ abstract class BaseWidget extends Widget
     public $viewFile = 'vote';
 
     /**
+     * @var array
+     */
+    public $viewParams = [];
+
+    /**
      * @return string
      */
     public function getSelector()
@@ -161,5 +166,14 @@ abstract class BaseWidget extends Widget
             });
         ");
         $this->view->registerJs($jsCode, View::POS_END, $this->jsCodeKey);
+    }
+
+    /**
+     * @param array $params
+     * @return array
+     */
+    protected function getViewParams(array $params)
+    {
+        return array_merge($this->viewParams, $params);
     }
 }

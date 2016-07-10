@@ -63,7 +63,7 @@ class VoteToggle extends BaseWidget
      */
     public function run()
     {
-        return $this->render($this->viewFile, [
+        return $this->render($this->viewFile, $this->getViewParams([
             'jsCodeKey' => $this->jsCodeKey,
             'entity' => $this->entity,
             'model' => $this->model,
@@ -72,7 +72,7 @@ class VoteToggle extends BaseWidget
             'count' => isset($this->aggregateModel->positive) ? $this->aggregateModel->positive : 0,
             'options' => $this->options,
             'buttonOptions' => $this->buttonOptions,
-        ]);
+        ]));
     }
 
     /**
