@@ -102,7 +102,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 * [Vote behaviors](docs/behaviors.md)
 * [Action events](docs/action-events.md)
-* [Customization](docs/customzation.md)
+* [Customization](docs/customization.md)
 
 ## License
 
