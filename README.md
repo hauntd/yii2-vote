@@ -15,7 +15,7 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist hauntd/yii2-vote "*"
+php composer.phar require --prefer-dist hauntd/yii2-vote "0.2.*"
 ```
 
 or add
@@ -100,9 +100,9 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Documentation
 
-* [Extended description](https://github.com/hauntd/yii2-vote/blob/master/docs/README.md)
-* **TBD** Using behaviors
-* **TBD** Customization
+* [Vote behaviors](docs/behaviors.md)
+* [Action events](docs/action-events.md)
+* [Customization](docs/customzation.md)
 
 ## License
 
