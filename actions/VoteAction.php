@@ -6,6 +6,7 @@ use hauntd\vote\models\Vote;
 use hauntd\vote\models\VoteAggregate;
 use hauntd\vote\models\VoteForm;
 use hauntd\vote\Module;
+use hauntd\vote\events\VoteActionEvent;
 use hauntd\vote\traits\ModuleTrait;
 use Yii;
 use yii\base\Action;
@@ -20,6 +21,9 @@ class VoteAction extends Action
 {
     use ModuleTrait;
 
+    const EVENT_BEFORE_VOTE = 'beforeVote';
+    const EVENT_AFTER_VOTE = 'afterVote';
+
     /**
      * @return array
      * @throws MethodNotAllowedHttpException
@@ -33,15 +37,17 @@ class VoteAction extends Action
         Yii::$app->response->format = Response::FORMAT_JSON;
         $module = $this->getModule();
         $form = new VoteForm();
+        $form->load(Yii::$app->request->post());
+        $this->trigger(self::EVENT_BEFORE_VOTE, $event = $this->createEvent($form, $response = []));
 
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+        if ($form->validate()) {
             $settings = $module->getSettingsForEntity($form->entity);
             if ($settings['type'] == Module::TYPE_VOTING) {
                 $response = $this->processVote($form);
-            } elseif ($settings['type'] == Module::TYPE_TOGGLE) {
+            } else {
                 $response = $this->processToggle($form);
             }
-
+            $response = array_merge($event->responseData, $response);
             $response['aggregate'] = VoteAggregate::findOne([
                 'entity' => $module->encodeEntity($form->entity),
                 'target_id' => $form->targetId
@@ -50,7 +56,9 @@ class VoteAction extends Action
             $response = ['success' => false, 'errors' => $form->errors];
         }
 
-        return $response;
+        $this->trigger(self::EVENT_AFTER_VOTE, $event = $this->createEvent($form, $response));
+
+        return $event->responseData;
     }
 
     /**
@@ -141,5 +149,20 @@ class VoteAction extends Action
         } else {
             return ['success' => false, 'errors' => $vote->errors];
         }
+    }
+
+    /**
+     * @param VoteForm $voteForm
+     * @param array $responseData
+     * @return object
+     * @throws \yii\base\InvalidConfigException
+     */
+    protected function createEvent(VoteForm $voteForm, array $responseData)
+    {
+        return Yii::createObject([
+            'class' => VoteActionEvent::class,
+            'voteForm' => $voteForm,
+            'responseData' => $responseData
+        ]);
     }
 }

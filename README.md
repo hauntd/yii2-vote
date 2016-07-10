@@ -4,6 +4,10 @@ This module allows you to attach vote widgets, like/favorite buttons to your mod
 
 ![Demo](https://raw.githubusercontent.com/hauntd/resources/master/yii2-vote/output.gif)
 
+- Attach widgets to model as many widgets as you need
+- Customization (action, events, views)
+- Useful widgets included (Favorite button, Like button, Rating "up/down")
+
 ## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
@@ -29,7 +33,6 @@ Add module settings to your application config (`config/main.php`).
 Entity names should be in camelCase like `itemVote`, `itemVoteGuests`, `itemLike` and `itemFavorite`.
 
 ```php
-<?php
 return [
   'modules' => [
     'vote' => [
@@ -53,6 +56,9 @@ return [
       ],
     ],
   ],
+  'components' => [
+    ...
+  ]
 ];
 ```
 
@@ -91,6 +97,12 @@ Like/Favorite widgets:
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Documentation
+
+* [Extended description](https://github.com/hauntd/yii2-vote/blob/master/docs/README.md)
+* **TBD** Using behaviors
+* **TBD** Customization
 
 ## License
 

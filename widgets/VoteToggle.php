@@ -53,7 +53,7 @@ class VoteToggle extends BaseWidget
         parent::init();
         $this->options = array_merge($this->getDefaultOptions(), $this->options);
         $this->buttonOptions = array_merge($this->getDefaultButtonOptions(), $this->buttonOptions);
-        $this->initJsEvents($this->getSelector($this->options['class']));
+        $this->initJsEvents($this->getSelector());
         $this->registerJs();
     }
 
@@ -77,7 +77,7 @@ class VoteToggle extends BaseWidget
 
     /**
      * Initialize with default events.
-     * 
+     *
      * @param string $selector
      */
     public function initJsEvents($selector)
