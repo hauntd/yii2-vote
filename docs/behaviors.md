@@ -123,14 +123,10 @@ class ItemsController extends Controller
         <?= \hauntd\vote\widgets\Vote::widget([
             'entity' => 'itemVote',
             'model' => $model,
-            'aggregateModel' => $model->getVoteAggregate('itemVote'),
-            'userValue' => $model->getUserValue('itemVote'),
         ]); ?>
         <?= \hauntd\vote\widgets\Favorite::widget([
             'entity' => 'itemFavorite',
             'model' => $model,
-            'aggregateModel' => $model->getVoteAggregate('itemFavorite'),
-            'userValue' => $model->getUserValue('itemFavorite'),
         ]); ?>
     </div>
 </div>

@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.3] - 2016-07-11
+- `enh` Auto-detect vote behavior
+
 ## [0.2.2] - 2016-07-10
 
 - `enh` Visual improvements, loading state

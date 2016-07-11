@@ -3,10 +3,13 @@
 namespace hauntd\vote\widgets;
 
 use hauntd\vote\assets\VoteAsset;
+use hauntd\vote\behaviors\VoteBehavior;
+use hauntd\vote\models\Vote;
 use hauntd\vote\models\VoteAggregate;
 use hauntd\vote\traits\ModuleTrait;
 use yii\base\InvalidParamException;
 use yii\base\Widget;
+use yii\db\ActiveRecord;
 use yii\web\View;
 use yii\web\JsExpression;
 use Yii;
@@ -47,7 +50,7 @@ abstract class BaseWidget extends Widget
     /**
      * @var null|integer
      */
-    public $userValue = null;
+    public $userValue;
 
     /**
      * @var string
@@ -111,7 +114,7 @@ abstract class BaseWidget extends Widget
     {
         parent::init();
 
-        if (!isset($this->entity) || !isset($this->model)) {
+        if (!isset($this->entity) || !isset($this->model) || !($this->model instanceof ActiveRecord)) {
             throw new InvalidParamException(Yii::t('vote', 'Entity and model must be set.'));
         }
 
@@ -129,17 +132,31 @@ abstract class BaseWidget extends Widget
      */
     public function initDefaults()
     {
-        if (!isset($this->voteUrl)) {
-            $this->voteUrl = Yii::$app->getUrlManager()->createUrl(['vote/default/vote']);
+        $this->voteUrl = isset($this->voteUrl) ?: Yii::$app->getUrlManager()->createUrl(['vote/default/vote']);
+        $this->targetId = isset($this->targetId) ?: $this->model->getPrimaryKey();
+
+        $behaviorIncluded = false;
+        if (!isset($this->aggregateModel) || !isset($this->userValue)) {
+            $behaviors = $this->model->getBehaviors();
+            foreach ($behaviors as $behavior) {
+                if ($behavior instanceof VoteBehavior) {
+                    $behaviorIncluded = true;
+                    break;
+                }
+            }
         }
-        if (!isset($this->targetId)) {
-            $this->targetId = $this->model->getPrimaryKey();
-        }
+
         if (!isset($this->aggregateModel)) {
-            $this->aggregateModel = VoteAggregate::findOne([
-                'entity' => $this->getModule()->encodeEntity($this->entity),
-                'target_id' => $this->targetId,
-            ]);
+            $this->aggregateModel = $behaviorIncluded ?
+                $this->model->getVoteAggregate($this->entity) :
+                VoteAggregate::findOne([
+                    'entity' => $this->getModule()->encodeEntity($this->entity),
+                    'target_id' => $this->targetId,
+                ]);
+        }
+
+        if (!isset($this->userValue)) {
+            $this->userValue = $behaviorIncluded ? $this->model->getUserValue($this->entity) : null;
         }
     }
 
