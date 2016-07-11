@@ -2,17 +2,15 @@
 
 namespace hauntd\vote\widgets;
 
+use Yii;
 use hauntd\vote\assets\VoteAsset;
 use hauntd\vote\behaviors\VoteBehavior;
-use hauntd\vote\models\Vote;
 use hauntd\vote\models\VoteAggregate;
 use hauntd\vote\traits\ModuleTrait;
 use yii\base\InvalidParamException;
 use yii\base\Widget;
-use yii\db\ActiveRecord;
-use yii\web\View;
 use yii\web\JsExpression;
-use Yii;
+use yii\web\View;
 
 /**
  * @author Alexander Kononenko <contact@hauntd.me>
@@ -98,6 +96,11 @@ abstract class BaseWidget extends Widget
     public $viewParams = [];
 
     /**
+     * @var bool
+     */
+    protected $_behaviorIncluded;
+
+    /**
      * @return string
      */
     public function getSelector()
@@ -114,7 +117,7 @@ abstract class BaseWidget extends Widget
     {
         parent::init();
 
-        if (!isset($this->entity) || !isset($this->model) || !($this->model instanceof ActiveRecord)) {
+        if (!isset($this->entity) || !isset($this->model)) {
             throw new InvalidParamException(Yii::t('vote', 'Entity and model must be set.'));
         }
 
@@ -135,19 +138,8 @@ abstract class BaseWidget extends Widget
         $this->voteUrl = isset($this->voteUrl) ?: Yii::$app->getUrlManager()->createUrl(['vote/default/vote']);
         $this->targetId = isset($this->targetId) ?: $this->model->getPrimaryKey();
 
-        $behaviorIncluded = false;
-        if (!isset($this->aggregateModel) || !isset($this->userValue)) {
-            $behaviors = $this->model->getBehaviors();
-            foreach ($behaviors as $behavior) {
-                if ($behavior instanceof VoteBehavior) {
-                    $behaviorIncluded = true;
-                    break;
-                }
-            }
-        }
-
         if (!isset($this->aggregateModel)) {
-            $this->aggregateModel = $behaviorIncluded ?
+            $this->aggregateModel = $this->behaviorIncluded() ?
                 $this->model->getVoteAggregate($this->entity) :
                 VoteAggregate::findOne([
                     'entity' => $this->getModule()->encodeEntity($this->entity),
@@ -156,7 +148,7 @@ abstract class BaseWidget extends Widget
         }
 
         if (!isset($this->userValue)) {
-            $this->userValue = $behaviorIncluded ? $this->model->getUserValue($this->entity) : null;
+            $this->userValue = $this->behaviorIncluded() ? $this->model->getUserValue($this->entity) : null;
         }
     }
 
@@ -192,5 +184,25 @@ abstract class BaseWidget extends Widget
     protected function getViewParams(array $params)
     {
         return array_merge($this->viewParams, $params);
+    }
+
+    /**
+     * @return bool
+     */
+    protected function behaviorIncluded()
+    {
+        if (isset($this->_behaviorIncluded)) {
+            return $this->_behaviorIncluded;
+        }
+
+        if (!isset($this->aggregateModel) || !isset($this->userValue)) {
+            foreach ($this->model->getBehaviors() as $behavior) {
+                if ($behavior instanceof VoteBehavior) {
+                    return $this->_behaviorIncluded = true;
+                }
+            }
+        }
+
+        return false;
     }
 }
