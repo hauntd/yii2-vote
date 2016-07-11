@@ -2,13 +2,13 @@
 
 namespace hauntd\vote\actions;
 
+use Yii;
+use hauntd\vote\Module;
+use hauntd\vote\events\VoteActionEvent;
 use hauntd\vote\models\Vote;
 use hauntd\vote\models\VoteAggregate;
 use hauntd\vote\models\VoteForm;
-use hauntd\vote\Module;
-use hauntd\vote\events\VoteActionEvent;
 use hauntd\vote\traits\ModuleTrait;
-use Yii;
 use yii\base\Action;
 use yii\web\MethodNotAllowedHttpException;
 use yii\web\Response;

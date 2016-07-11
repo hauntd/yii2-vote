@@ -2,8 +2,8 @@
 
 namespace hauntd\vote\widgets;
 
-use yii\bootstrap\Html;
 use Yii;
+use yii\bootstrap\Html;
 
 /**
  * @author Alexander Kononenko <contact@hauntd.me>

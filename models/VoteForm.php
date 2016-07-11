@@ -3,10 +3,10 @@
 namespace hauntd\vote\models;
 
 use Yii;
+use hauntd\vote\Module;
+use hauntd\vote\traits\ModuleTrait;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
-use hauntd\vote\traits\ModuleTrait;
-use hauntd\vote\Module;
 
 /**
  * @author Alexander Kononenko <contact@hauntd.me>

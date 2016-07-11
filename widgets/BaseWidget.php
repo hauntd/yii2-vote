@@ -139,7 +139,7 @@ abstract class BaseWidget extends Widget
         $this->targetId = isset($this->targetId) ?: $this->model->getPrimaryKey();
 
         if (!isset($this->aggregateModel)) {
-            $this->aggregateModel = $this->behaviorIncluded() ?
+            $this->aggregateModel = $this->isBehaviorIncluded() ?
                 $this->model->getVoteAggregate($this->entity) :
                 VoteAggregate::findOne([
                     'entity' => $this->getModule()->encodeEntity($this->entity),
@@ -148,7 +148,7 @@ abstract class BaseWidget extends Widget
         }
 
         if (!isset($this->userValue)) {
-            $this->userValue = $this->behaviorIncluded() ? $this->model->getUserValue($this->entity) : null;
+            $this->userValue = $this->isBehaviorIncluded() ? $this->model->getUserValue($this->entity) : null;
         }
     }
 
@@ -189,7 +189,7 @@ abstract class BaseWidget extends Widget
     /**
      * @return bool
      */
-    protected function behaviorIncluded()
+    protected function isBehaviorIncluded()
     {
         if (isset($this->_behaviorIncluded)) {
             return $this->_behaviorIncluded;
@@ -203,6 +203,6 @@ abstract class BaseWidget extends Widget
             }
         }
 
-        return false;
+        return $this->_behaviorIncluded = false;
     }
 }
