@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.4] - 2016-08-09
+- `enh` Refactoring
+
 ## [0.2.3] - 2016-07-11
 - `enh` Auto-detect vote behavior
 
