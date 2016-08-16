@@ -160,7 +160,7 @@ class VoteAction extends Action
     protected function createEvent(VoteForm $voteForm, array $responseData)
     {
         return Yii::createObject([
-            'class' => VoteActionEvent::class,
+            'class' => VoteActionEvent::className(),
             'voteForm' => $voteForm,
             'responseData' => $responseData
         ]);

@@ -33,7 +33,7 @@ class Item extends ActiveRecord
     public function behaviors()
     {
         return [
-            VoteBehavior::class, // add VoteBehavior class to your model
+            VoteBehavior::className(), // add VoteBehavior class to your model
         ];
     }
 
@@ -58,7 +58,7 @@ class ItemQuery extends \yii\db\ActiveQuery
     public function behaviors()
     {
         return [
-            VoteQueryBehavior::class,
+            VoteQueryBehavior::className(),
         ];
     }
 }

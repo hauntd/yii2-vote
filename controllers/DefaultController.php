@@ -24,7 +24,7 @@ class DefaultController extends Controller
     {
         return [
             'vote' => [
-                'class' => VoteAction::class,
+                'class' => VoteAction::className(),
             ]
         ];
     }

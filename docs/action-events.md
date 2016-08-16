@@ -7,17 +7,17 @@ If you need to add or extend functionality (before or after vote action) you can
 ```php
  'modules' => [
     'vote' => [
-        class' => hauntd\vote\Module::class,
+        class' => hauntd\vote\Module::className(),
             'controllerMap' => [
                 'default' => 'app\controllers\MyVoteController', // here
             ],
             'entities' => [
                 'itemLike' => [
-                    'modelName' => app\models\Item::class,
+                    'modelName' => app\models\Item::className(),
                     'type' => hauntd\vote\Module::TYPE_TOGGLE,
                 ],
                 'itemFavorite' => [
-                    'modelName' => app\models\Item::class,
+                    'modelName' => app\models\Item::className(),
                     'type' => hauntd\vote\Module::TYPE_TOGGLE,
                 ],
             ],

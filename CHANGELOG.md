@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.5] - 2016-08-16
+- `enh` PHP 5.4 Support
+
 ## [0.2.4] - 2016-08-09
 - `enh` Refactoring
 
