@@ -90,6 +90,17 @@ class ItemsController extends Controller
             $query->withUserVote($entity); // include user vote status
         }
 
+        /**
+         * After attaching behaviors, you'll get access to new attributes - positive, negative and rating
+         * So, if you have 'itemVote' entity, you should use 'itemVotePositive', 'itemVoteNegative' and
+         * 'itemVoteRating' attributes.
+         *
+         * For example:
+         */
+        $query->orderBy('itemVoteRating desc');
+        // or
+        $query->orderBy('itemFavoritePositive desc');
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
