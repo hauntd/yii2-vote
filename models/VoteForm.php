@@ -21,7 +21,7 @@ class VoteForm extends Model
     const ACTION_TOGGLE = 'toggle';
 
     /**
-     * @var string entity (e.g. "user.like" or "page.voting")
+     * @var string entity (e.g. "userLike" or "pageVoting")
      */
     public $entity;
 
