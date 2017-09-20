@@ -48,7 +48,7 @@ class Module extends \yii\base\Module
      */
     public function encodeEntity($entity)
     {
-        return crc32($entity);
+        return sprintf("%u", crc32($entity));
     }
 
     /**
