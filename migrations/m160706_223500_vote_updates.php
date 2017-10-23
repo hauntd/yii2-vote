@@ -10,7 +10,7 @@ class m160706_223500_vote_updates extends Migration
     public function up()
     {
         $this->createIndex('vote_target_user_idx', '{{%vote}}', ['entity', 'target_id', 'user_id'], false);
-        $this->execute('ALTER TABLE vote ALTER COLUMN value TYPE boolean USING CASE value WHEN 0 THEN false ELSE true END');
+        $this->alterColumn('{{%vote}}', 'value', $this->boolean()->notNull());
     }
 
     public function down()
