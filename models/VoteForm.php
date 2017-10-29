@@ -75,9 +75,18 @@ class VoteForm extends Model
             return false;
         }
         $targetModel = Yii::createObject($settings['modelName']);
-        if ($targetModel->findOne(['id' => $this->targetId]) == null) {
+        $entityModel = $targetModel->findOne(['id' => $this->targetId]);
+        if ($entityModel == null) {
             $this->addError('targetId', Yii::t('vote', 'Target model not found.'));
             return false;
+        }
+        $allowSelfVote = ArrayHelper::getValue($settings, 'allowSelfVote', false);
+        if (!$allowSelfVote) {
+            $entityAuthorAttribute = ArrayHelper::getValue($settings, 'entityAuthorAttribute', 'user_id');
+            if(!Yii::$app->user->isGuest && Yii::$app->user->id == $entityModel->{$entityAuthorAttribute}) {
+                $this->addError('entity', Yii::t('vote', 'Self-voting are not allowed.'));
+                return false;
+            }
         }
 
         return true;
