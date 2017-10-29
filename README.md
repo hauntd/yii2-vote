@@ -44,6 +44,8 @@ return [
           'itemVoteGuests' => [
               'modelName' => app\models\Item::class, // your model
               'allowGuests' => true,
+              'allowSelfVote' => false,
+              'entityAuthorAttribute' => 'user_id',
           ],
           'itemLike' => [
               'modelName' => app\models\Item::class, // your model
