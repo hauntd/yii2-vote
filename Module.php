@@ -81,6 +81,8 @@ class Module extends \yii\base\Module
         return [
             'type' => self::TYPE_VOTING,
             'allowGuests' => false,
+            'allowSelfVote' => true,
+            'entityAuthorAttribute' => 'user_id',
         ];
     }
 }
