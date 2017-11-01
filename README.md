@@ -15,7 +15,7 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist hauntd/yii2-vote "0.2.*"
+php composer.phar require --prefer-dist hauntd/yii2-vote "0.3.*"
 ```
 
 or add

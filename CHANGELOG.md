@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3] - 2017-11-01
+- `enh` Self-vote option (sokoji)
+- `fix` Migration fix (sokoji)
+
 ## [0.2.5] - 2016-08-16
 - `enh` PHP 5.4 Support
 

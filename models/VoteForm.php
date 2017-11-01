@@ -83,7 +83,7 @@ class VoteForm extends Model
         $allowSelfVote = ArrayHelper::getValue($settings, 'allowSelfVote', false);
         if (!$allowSelfVote) {
             $entityAuthorAttribute = ArrayHelper::getValue($settings, 'entityAuthorAttribute', 'user_id');
-            if(!Yii::$app->user->isGuest && Yii::$app->user->id == $entityModel->{$entityAuthorAttribute}) {
+            if (!Yii::$app->user->isGuest && Yii::$app->user->id == $entityModel->{$entityAuthorAttribute}) {
                 $this->addError('entity', Yii::t('vote', 'Self-voting are not allowed.'));
                 return false;
             }
