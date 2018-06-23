@@ -25,7 +25,7 @@
 <?= \hauntd\vote\widgets\Favorite::widget([
     'entity' => 'itemFavorite',
     'model' => $model,
-    'buttonsOptions' => [
+    'buttonOptions' => [
         'icon' => '<i class="glyphicon glyphicon-floppy-disk"></i>',
         'label' => Yii::t('app', 'Save'),
         'labelAdd' => Yii::t('app', 'Save'),
