@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.1] - 2018-06-23
+- `new` Scope for select only favorite items (loveorigami)
+- `fix` Fixes (loveorigami)
+
 ## [0.3] - 2017-11-01
 - `enh` Self-vote option (sokoji)
 - `fix` Migration fix (sokoji)
