@@ -88,7 +88,7 @@ class VoteQueryBehavior extends Behavior
     
      /**
      * Scope for select only favorite items
-     * 
+     *
      * @param $entity
      * @return VoteQueryBehavior
      * @throws \yii\base\InvalidConfigException
@@ -97,10 +97,10 @@ class VoteQueryBehavior extends Behavior
     {
         $entityEncoded = $this->getModule()->encodeEntity($entity);
 
-        $this->andWhere(["{$entity}.user_id" => Yii::$app->user->id]);
-        $this->andWhere(["$entity.entity" => $entityEncoded]);
+        $this->owner->andWhere(["{$entity}.user_id" => Yii::$app->user->id]);
+        $this->owner->andWhere(["$entity.entity" => $entityEncoded]);
 
-        return $this;
+        return $this->owner;
     }
 
     /**
