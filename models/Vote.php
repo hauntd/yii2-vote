@@ -30,7 +30,7 @@ class Vote extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'vote';
+        return '{{%vote}}';
     }
 
     /**
