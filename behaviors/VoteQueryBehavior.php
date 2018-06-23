@@ -85,6 +85,23 @@ class VoteQueryBehavior extends Behavior
 
         return $this->owner;
     }
+    
+     /**
+     * Scope for select only favorite items
+     * 
+     * @param $entity
+     * @return VoteQueryBehavior
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function andFavorites($entity)
+    {
+        $entityEncoded = $this->getModule()->encodeEntity($entity);
+
+        $this->andWhere(["{$entity}.user_id" => Yii::$app->user->id]);
+        $this->andWhere(["$entity.entity" => $entityEncoded]);
+
+        return $this;
+    }
 
     /**
      * Add `{{%table}}`.* as first table attributes to select.
