@@ -87,13 +87,13 @@ class VoteQueryBehavior extends Behavior
     }
     
      /**
-     * Scope for select only favorite items
+     * Scope for select only favorite or vote items
      *
      * @param $entity
      * @return VoteQueryBehavior
      * @throws \yii\base\InvalidConfigException
      */
-    public function andFavorites($entity)
+    public function andFilterByEntity($entity)
     {
         $entityEncoded = $this->getModule()->encodeEntity($entity);
 
