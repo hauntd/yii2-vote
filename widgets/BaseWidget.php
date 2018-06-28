@@ -157,10 +157,9 @@ abstract class BaseWidget extends Widget
      */
     protected function registerJs()
     {
-        $selector = '[data-rel="'.$this->jsCodeKey.'"] button';
         $jsCode = new JsExpression("
-            $('body').off('click', '$selector').on('click', '$selector', function(event) {
-                var vote = $(this).closest('$selector'),
+            $('body').off('click', '[data-rel=\"{$this->jsCodeKey}\"] button').on('click', '[data-rel=\"{$this->jsCodeKey}\"] button', function(event) {
+                var vote = $(this).closest('[data-rel=\"{$this->jsCodeKey}\"]'),
                     button = $(this),
                     action = button.attr('data-action'),
                     entity = vote.attr('data-entity'),
