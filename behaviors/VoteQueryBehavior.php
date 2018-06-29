@@ -12,7 +12,7 @@ use yii\db\Expression;
 /**
  * Class VoteQueryBehavior
  * @package hauntd\vote\behaviors
- * @property $owner \yii\db\ActiveQuery
+ * @property \yii\db\ActiveQuery $owner
  */
 class VoteQueryBehavior extends Behavior
 {
