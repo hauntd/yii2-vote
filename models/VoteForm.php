@@ -37,7 +37,6 @@ class VoteForm extends Model
 
     /**
      * @return array
-     * @throws \yii\base\InvalidConfigException
      */
     public function rules()
     {

@@ -59,7 +59,6 @@ class VoteToggle extends BaseWidget
 
     /**
      * @return string
-     * @throws \yii\base\InvalidConfigException
      */
     public function run()
     {

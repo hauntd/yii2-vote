@@ -22,7 +22,6 @@ class VoteBehavior extends Behavior
 
     /**
      * @param \yii\base\Component $owner
-     * @throws \yii\base\InvalidConfigException
      */
     public function attach($owner)
     {
@@ -80,6 +79,7 @@ class VoteBehavior extends Behavior
     /**
      * @param $name
      * @return bool
+     * @throws \yii\base\InvalidConfigException
      */
     protected function checkAttribute($name)
     {
@@ -96,6 +96,7 @@ class VoteBehavior extends Behavior
      * @param string $name
      * @param bool|true $checkVars
      * @return bool
+     * @throws \yii\base\InvalidConfigException
      */
     public function canGetProperty($name, $checkVars = true)
     {
@@ -109,6 +110,7 @@ class VoteBehavior extends Behavior
      * @param string $name
      * @param bool|true $checkVars
      * @return bool
+     * @throws \yii\base\InvalidConfigException
      */
     public function canSetProperty($name, $checkVars = true)
     {

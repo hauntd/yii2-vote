@@ -7,17 +7,17 @@ If you need to add or extend functionality (before or after vote action) you can
 ```php
  'modules' => [
     'vote' => [
-        class' => hauntd\vote\Module::className(),
+        class' => hauntd\vote\Module::class,
             'controllerMap' => [
                 'default' => 'app\controllers\MyVoteController', // here
             ],
             'entities' => [
                 'itemLike' => [
-                    'modelName' => app\models\Item::className(),
+                    'modelName' => app\models\Item::class,
                     'type' => hauntd\vote\Module::TYPE_TOGGLE,
                 ],
                 'itemFavorite' => [
-                    'modelName' => app\models\Item::className(),
+                    'modelName' => app\models\Item::class,
                     'type' => hauntd\vote\Module::TYPE_TOGGLE,
                 ],
             ],
@@ -43,7 +43,7 @@ class MyVoteController extends Controller
     {
         return [
             'vote' => [
-                'class' => VoteAction::className(),
+                'class' => VoteAction::class,
                 'on ' . VoteAction::EVENT_BEFORE_VOTE => function(VoteActionEvent $event) {
                     $event->responseData['before'] = microtime(true);
                     if (\Yii::$app->request->userIP == '192.168.0.23') {

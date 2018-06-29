@@ -40,7 +40,7 @@ class Vote extends \yii\db\ActiveRecord
     {
         return [
             [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => false,
             ],
@@ -91,7 +91,7 @@ class Vote extends \yii\db\ActiveRecord
      */
     public function getAggregate()
     {
-        return $this->hasOne(VoteAggregate::className(), [
+        return $this->hasOne(VoteAggregate::class, [
             'vote.entity' => 'vote_aggregate.entity',
             'vote.target_id' => 'vote_aggregate.target_id'
         ]);
