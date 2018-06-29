@@ -124,7 +124,7 @@ abstract class BaseWidget extends Widget
         $this->initDefaults();
 
         if ($this->getModule()->registerAsset) {
-            $this->view->registerAssetBundle(VoteAsset::className());
+            $this->view->registerAssetBundle(VoteAsset::class);
         }
     }
 

@@ -15,6 +15,7 @@ Thumbs.db
 # composer related
 /vendor
 composer.phar
+composer.lock
 
 # Mac DS_Store Files
 .DS_Store

@@ -13,7 +13,7 @@ use yii\base\InvalidConfigException;
 trait ModuleTrait
 {
     /**
-     * @return \hauntd\vote\Module
+     * @return \hauntd\vote\Module|\yii\base\Module
      * @throws InvalidConfigException
      */
     public function getModule()
