@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.3.2] - 2018-10-08
+- `fix` Exception thrown when primary key attribute is not 'id' (dronz)
+
 ## [0.3.1] - 2018-06-23
 - `new` Scope for select only favorite items (loveorigami)
 - `fix` Fixes (loveorigami)

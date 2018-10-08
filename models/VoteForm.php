@@ -74,7 +74,7 @@ class VoteForm extends Model
             return false;
         }
         $targetModel = Yii::createObject($settings['modelName']);
-        $entityModel = $targetModel->findOne(['id' => $this->targetId]);
+        $entityModel = $targetModel->findOne([$targetModel::primaryKey()[0] => $this->targetId]);
         if ($entityModel == null) {
             $this->addError('targetId', Yii::t('vote', 'Target model not found.'));
             return false;
